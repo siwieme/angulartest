@@ -1,0 +1,36 @@
+<div class='temp'>
+  <p class="title">
+    Bathroom
+  </p>
+
+  <div class='inner'>
+    <div class='icon'></div>
+    <div class="cell">
+      <div class='title'>
+        <div class='text'>Current</div>
+      </div>
+      <div class="number">
+        {{temperatuur}}
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class='title'>
+        <div class='text'>Target</div>
+      </div>
+      <div class="number">
+        <!-- in de oorspronkelijke code stond er
+          <input type="number" value="23"/>
+        maar value moet je door ngModel vervangen !!
+        (en er dubbele haakjes van type 'banana-in-a-box' rond zetten
+        voor two way binding) -->
+        <input type="number" [(ngModel)]="temperatuur"/>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+

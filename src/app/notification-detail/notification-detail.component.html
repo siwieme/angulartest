@@ -1,0 +1,41 @@
+<!--
+In de opgave wordt niet gepreciseerd hoe de notificationdetails precies
+getoond moeten worden.
+Hier werd zoveel mogelijk code overgenomen uit de component Notification.
+Ook de css-code werd overgenomen. (Of schrijf die in het overkoepelend bestand styles.css.)
+
+Als je in 'strict mode' werkt, dan wordt er strikt nagelezen op types.
+Krijg je foutmeldingen zoals "Object is possibly 'undefined'.",
+dan moet je daar rekening mee houden. Vandaar de test met *ngIf.
+
+Hoe test je dat laatste stuk dan uit, nl. "als notification undefined is"?
+Vraag in notification-detail.component.ts naar een notification die zeker niet bestaat.
+En kijk wat er dan in de browser verschijnt.
+Concreet: vervang de code in ngOnInit door:
+
+  ngOnInit(): void {
+    this.id = +this.route.snapshot.paramMap.get("id");
+    this.notification = this.service.haalNotification(1000 + this.id);   ! zoek naar onbestaande id
+  }
+-->
+
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div *ngIf="notification!==undefined; else geenNotificationGevonden">
+      <a class="list-group-item list-group-item-action">
+        <div class="media">
+          <p class="fas {{notification.icon}}" ></p>
+          <p class="media-body">
+            {{notification.message}} (notification-id is {{notification.id}})
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #geenNotificationGevonden>
+  <div>Geen notification gevonden, helaas...</div>
+</ng-template>
